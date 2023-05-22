@@ -17,12 +17,10 @@ func main() {
 		log.Printf("yamlFile.Get err   #%v ", err)
 	}
 
-	var config Config
-
-	err = yaml.Unmarshal(yamlFile, &config)
+	err = yaml.Unmarshal(yamlFile, &tests)
 	if err != nil {
 		log.Fatalf("Unmarshal: %v", err)
 	}
 
-	fmt.Printf("Value: %#v\n", config)
+	fmt.Printf("Value: %#v\n", tests)
 }

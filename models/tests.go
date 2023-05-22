@@ -1,18 +1,20 @@
 package models
 
-// type Header struct {
-
-// }
+type Header struct {
+	Key   string `yaml:"key"`
+	Value string `yaml:"value"`
+}
 
 type Test struct {
-	name string `yaml: "name"`
-	description string `yaml: "description"`
-	url string `yaml: "url"`
-	method string `yaml: "method"`
-	headers []Header `yaml: "headers"`
+	Name        string   `yaml:"name"`
+	Description string   `yaml:"description"`
+	URL         string   `yaml:"url"`
+	Method      string   `yaml:"method"`
+	Headers     map[string]string `yaml:"headers"`
+	Body		map[string]string `yaml:"body"`
 }
 
 type Group struct {
-	group string `yaml: "group"`
-	tests []Test `yaml: "tests"`
+	Group string `yaml:"group"`
+	Tests []Test `yaml:"tests"`
 }
