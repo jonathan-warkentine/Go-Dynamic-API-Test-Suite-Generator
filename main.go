@@ -5,16 +5,14 @@ import (
 	"io/ioutil"
 	"log"
 
+	"github.com/jonathan-warkentine/Go-Dynamic-API-Test-Suite-Generator/models"
 	"gopkg.in/yaml.v2"
 )
 
-type Config struct {
-	Host string `yaml:"host"`
-	Port int    `yaml:"port"`
-}
+var tests []models.Group
 
 func main() {
-	yamlFile, err := ioutil.ReadFile("config.yaml")
+	yamlFile, err := ioutil.ReadFile("tests.yml")
 	if err != nil {
 		log.Printf("yamlFile.Get err   #%v ", err)
 	}
