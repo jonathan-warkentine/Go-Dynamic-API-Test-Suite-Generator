@@ -2,25 +2,18 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 
-	"github.com/jonathan-warkentine/Go-Dynamic-API-Test-Suite-Generator/models"
-	"gopkg.in/yaml.v2"
+	"github.com/jonathan-warkentine/Go-Dynamic-API-Test-Suite-Generator/utils"
 )
 
-var tests []models.Group
-
 func main() {
-	yamlFile, err := ioutil.ReadFile("tests.yml")
+	groups, err := utils.Unmarshal()
 	if err != nil {
-		log.Printf("yamlFile.Get err   #%v ", err)
+		log.Fatalf("Error: %v", err)
 	}
 
-	err = yaml.Unmarshal(yamlFile, &tests)
-	if err != nil {
-		log.Fatalf("Unmarshal: %v", err)
+	for _, group := range groups {
+		fmt.Printf("Group: %+v\n", group)
 	}
-
-	fmt.Printf("Value: %#v\n", tests)
 }
