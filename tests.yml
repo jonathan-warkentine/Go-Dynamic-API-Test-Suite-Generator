@@ -1,0 +1,9 @@
+- group: testGroup1
+  tests:
+    - name: test1
+      description: health check should return 200
+      url: https://httpstat.us/200
+      method: GET
+      # headers:
+      #   Authorization: Bearer exampleTestToken
+
