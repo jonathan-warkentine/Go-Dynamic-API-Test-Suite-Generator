@@ -11,7 +11,8 @@ type Test struct {
 	URL         string   `yaml:"url"`
 	Method      string   `yaml:"method"`
 	Headers     map[string]string `yaml:"headers"`
-	Body		map[string]string `yaml:"body"`
+	Body		string `yaml:"body"`
+	Expect		int `yaml:"expect"`
 }
 
 type Group struct {

@@ -6,4 +6,5 @@
       method: GET
       headers:
         Authorization: Bearer exampleTestToken
+      expect: 200
 
