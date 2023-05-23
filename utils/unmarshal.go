@@ -21,5 +21,17 @@ func Unmarshal() ([]models.Group, error) {
 		return nil, fmt.Errorf("Unmarshal: %v", err)
 	}
 
+	// Provide default values for "method" and "expect" properties
+	// for _, group := range tests {
+	// 	for _, test := range group.Tests {
+	// 		if test.Method == "" {
+	// 			test.Method = "GET"
+	// 		}
+	// 		if test.Expect == 0 {
+	// 			test.Expect = 200
+	// 		}
+	// 	}
+	// }
+
 	return tests, nil
 }

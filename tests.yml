@@ -1,10 +1,20 @@
-- group: testGroup1
+- group: ExampleTests
   tests:
-    - name: test1
+    - name: test200
       description: health check should return 200
       url: https://httpstat.us/200
       method: GET
       headers:
         Authorization: Bearer exampleTestToken
-      expect: 201
+      expect: 200
+    - name: test404
+      description: wrong url should return 404
+      url: https://httpstat.us/404
+      method: GET
+      expect: 404
+    - name: test500
+      description: internal server error should return 500
+      url: https://httpstat.us/500
+      method: GET
+      expect: 500
 
