@@ -28,7 +28,7 @@ func executeTest(t *testing.T, test models.Test, done chan bool) {
 	if resp.StatusCode != test.Expect {
 		t.Errorf("Expected status %d, got %d", test.Expect, resp.StatusCode)
 	}
-	fmt.Printf("PASS: %s (%s to %s)\n", test.Name, test.Method, test.URL)
+	fmt.Printf("PASSED: %s (%s to %s)\n", test.Name, test.Method, test.URL)
 }
 
 // Function to execute a group of tests
