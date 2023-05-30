@@ -11,10 +11,8 @@ import (
 )
 
 // Function to execute an API call
-func executeTest(t *testing.T, test models.Test, done chan bool) {
+func executeTest(t *testing.T, client *http.Client, test models.Test, done chan bool) {
 	defer func() { done <- true }() // Signal when this test is done
-
-	client := &http.Client{} // Create an HTTP client
 
 	req, err := http.NewRequest(test.Method, test.URL, strings.NewReader(string(test.Body)))
 	if err != nil {
@@ -32,12 +30,12 @@ func executeTest(t *testing.T, test models.Test, done chan bool) {
 }
 
 // Function to execute a group of tests
-func executeTestGroup(t *testing.T, group models.Group) {
+func executeTestGroup(t *testing.T, client *http.Client, group models.Group) {
 	done := make(chan bool) // Channel to signal when a test is done
 
 	// Execute each test in a separate goroutine
 	for _, test := range group.Tests {
-		go executeTest(t, test, done)
+		go executeTest(t, client, test, done)
 	}
 
 	// Wait for all tests in this group to complete
@@ -47,6 +45,8 @@ func executeTestGroup(t *testing.T, group models.Group) {
 }
 
 func TestApiCalls(t *testing.T) {
+	client := &http.Client{} // Create an HTTP client
+
 	groups, err := utils.Unmarshal()
 	if err != nil {
 		t.Fatalf("Error: %v", err)
@@ -54,7 +54,7 @@ func TestApiCalls(t *testing.T) {
 
 	for _, group := range groups {
 		t.Run(group.Group, func(t *testing.T) {
-			executeTestGroup(t, group)
+			executeTestGroup(t, client, group)
 		})
 	}
 }
